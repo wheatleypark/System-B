@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bleep</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <environment include="Development">
+    <link rel="stylesheet" href="~/css/jquery-ui.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  </environment>
+  <environment exclude="Development">
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+  </environment>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Bleep">
+  <meta name="application-name" content="Bleep">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="msapplication-starturl" content="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no">
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-secondary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="~/">
+        Bleep
+      </a>
+      <div id="header-spinner"></div>
+      @if (User.Identity.IsAuthenticated)
+      {
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item d-none d-lg-inline-block"><div class="nav-link active">@User.Identity.Name</div></li>
+        <li class="nav-item"><a href="~/auth/signout" class="nav-link" onclick="localStorage.clear();">Sign out</a></li>
+      </ul>
+      }
+    </div>
+  </nav>
+
+  <div class="container">
+    @RenderBody()
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 col-9 text-muted smaller">&copy; @DateTime.Today.Year Wheatley Park School</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  @RenderSection("Scripts", required: false)
+</body>
+</html>

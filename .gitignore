@@ -1,0 +1,7 @@
+appsettings.json
+key.json
+
+*.user
+bin/
+obj/
+PublishProfiles/
