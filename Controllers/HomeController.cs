@@ -50,8 +50,8 @@ namespace Bleep.Controllers
         return StatusCode(500, "This service is unavailable out of hours.");
       }
 
-      var userId = HttpContext.User.Identity.Name;
-      var incident = new Incident(Guid.NewGuid().ToString("D"), studentName.Split(',')[0].ToTitleCase(), room, userId);
+      var userId = User.Identity.GetUserId();
+      var incident = new Incident(Guid.NewGuid().ToString("D"), studentName.Split(',')[0].ToTitleCase(), room, User.Identity.Name, userId);
 
       if (priority == 1)
       {

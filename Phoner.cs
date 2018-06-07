@@ -16,7 +16,7 @@ namespace Bleep
       var webAddress = $"{ctx.Request.Scheme}://{ctx.Request.Host.Value}";
       var query = "?incidentId=" + incident.Id;
 
-      await StatusHub.UpdateClientAsync(incident.Teacher, "phoneStart", stage.Name + (incident.Attempt > 1 ? $" (attempt {incident.Attempt} of {stage.Attempts})" : string.Empty), ctx);
+      await StatusHub.UpdateClientAsync(incident.UserId, "phoneStart", stage.Name + (incident.Attempt > 1 ? $" (attempt {incident.Attempt} of {stage.Attempts})" : string.Empty), ctx);
 
       await CallResource.CreateAsync(
         to: new PhoneNumber(stage.Number),

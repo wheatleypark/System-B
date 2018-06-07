@@ -9,7 +9,7 @@ namespace Bleep
   {
     public async Task UpdateClient(string userId, string command, object data)
     {
-      await Clients.User(userId).InvokeAsync(nameof(UpdateClient), command, data);
+      await Clients.User(userId).SendAsync(nameof(UpdateClient), command, data);
     }
 
     public static async Task UpdateClientAsync(string clientId, string command, object data, HttpContext ctx)

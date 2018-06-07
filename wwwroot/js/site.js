@@ -68,9 +68,7 @@ function match(request, response) {
   }).slice(0, 15));
 }
 
-var http = new signalR.HttpConnection('/hub', { transport: signalR.TransportType.WebSockets });
-var connection = new signalR.HubConnection(http);
-connection.start();
+var connection = new signalR.HubConnectionBuilder().withUrl("/hub").configureLogging(signalR.LogLevel.Information).build();
 
 connection.on('UpdateClient', (command, data) => {
   if (!active) {
@@ -118,6 +116,7 @@ connection.on('UpdateClient', (command, data) => {
   }
 });
 
+connection.start();
 
 $(function () {
   checkTime();

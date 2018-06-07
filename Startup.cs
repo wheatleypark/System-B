@@ -66,6 +66,11 @@ namespace Bleep
           };
         });
 
+      services.Configure<MvcOptions>(options =>
+      {
+        options.Filters.Add(new RequireHttpsAttribute());
+      });
+
       services.AddMemoryCache();
 
       services.AddMvc(config =>
@@ -76,7 +81,7 @@ namespace Bleep
         {
           config.Filters.Add(new RequireHttpsAttribute());
         }
-      });
+      }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
       services.AddSignalR();
 
@@ -116,7 +121,7 @@ namespace Bleep
 
       app.UseSignalR(routes =>
       {
-        routes.MapHub<StatusHub>("hub");
+        routes.MapHub<StatusHub>("/hub");
       });
     }
   }
